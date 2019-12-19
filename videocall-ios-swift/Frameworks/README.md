@@ -1,0 +1,1 @@
+Copy DeepAR.framework and AgoraRtcEngineKit.framework to this folder
