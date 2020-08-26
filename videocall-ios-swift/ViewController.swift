@@ -8,7 +8,7 @@
 
 import UIKit
 import DeepAR
-import AgoraRtcEngineKit
+import AgoraRtcKit
 
 class ViewController: UIViewController {
     
@@ -24,8 +24,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var hangUpButton: UIButton!
     
-    @IBOutlet weak var arView: ARView!
+    @IBOutlet weak var arViewContainer: UIView!
     @IBOutlet weak var remoteView: UIView!
+    
+    private var deepAr: DeepAR!
+    private var arView: ARView!
+    private var cameraController: CameraController!
     
     // MARK: - Private properties -
     
@@ -61,7 +65,7 @@ class ViewController: UIViewController {
         initializeAgoraEngine()
         setupVideo()
         
-        setupArView()
+        setupDeepAR()
         setupHangUpButton()
         addTargets()
         
@@ -73,21 +77,25 @@ class ViewController: UIViewController {
     
     func initializeAgoraEngine() {
         // init AgoraRtcEngineKit
-        agoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: "your_agora_app_id_here", delegate: self)
+        agoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: AgoraAppID, delegate: self)
+        //agoraKit.setChannelProfile(.liveBroadcasting)
+        
     }
 
     func setupVideo() {
         // In simple use cases, we only need to enable video capturing
         // and rendering once at the initialization step.
         // Note: audio recording and playing is enabled by default.
-        agoraKit.setExternalVideoSource(true, useTexture: true, pushMode: true)
         agoraKit.enableVideo()
+        agoraKit.setExternalVideoSource(true, useTexture: true, pushMode: true)
+        
+       
         agoraKit.disableAudio()
         
         // Set video configuration
         // Please go to this page for detailed explanation
         // https://docs.agora.io/cn/Voice/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af5f4de754e2c1f493096641c5c5c1d8f
-        agoraKit.setVideoEncoderConfiguration(AgoraVideoEncoderConfiguration(size: AgoraVideoDimension640x360,
+        agoraKit.setVideoEncoderConfiguration(AgoraVideoEncoderConfiguration(size: AgoraVideoDimension1280x720,
                                                                              frameRate: .fps15,
                                                                              bitrate: AgoraVideoBitrateStandard,
                                                                              orientationMode: .adaptative))
@@ -103,8 +111,11 @@ class ViewController: UIViewController {
         agoraKit.joinChannel(byToken: nil, channelId: "demoChannel1", info: nil, uid: 0) { [unowned self] (channel, uid, elapsed) -> Void in
             // Did join channel "demoChannel1"
             UIApplication.shared.isIdleTimerDisabled = true
-            self.arView.startFrameOutput(withXmin: 0, xmax: 1, ymin: 0, ymax: 1, scale: 1)
-            self.arView.isHidden = false
+            //self.arView.startFrameOutput(withXmin: 0, xmax: 1, ymin: 0, ymax: 1, scale: 1)
+            self.deepAr.startCapture(withOutputWidth: 720, outputHeight: 1280, subframe: CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0))
+            
+            self.remoteView.isHidden = false
+            self.arViewContainer.isHidden = false
         }
     }
     
@@ -115,17 +126,33 @@ class ViewController: UIViewController {
         
         UIApplication.shared.isIdleTimerDisabled = false
         remoteView.isHidden = true
-        arView.isHidden = true
+        arViewContainer.isHidden = true
         print("***INFO*** did leave channel")
         
         agoraKit = nil
     }
     
-    private func setupArView() {
-        arView.setLicenseKey("your_license_key_goes_here")
-        arView.delegate = self
-        arView.initialize()
-        arView.isHidden = true
+    private func setupDeepAR() {
+        self.deepAr = DeepAR()
+        self.deepAr.setLicenseKey("0bacf73d9164614ac9c244817479dffb54a0c708b389a0d787e6287ab931945a56974a6a337929aa")
+        self.deepAr.delegate = self
+    }
+    
+    private func setupARCamera() {
+        //let rect = CGRect(x: 0, y: 0, width: 720, height: 1280)
+        self.arView = self.deepAr.createARView(withFrame: self.arViewContainer.frame) as! ARView
+        self.arView.translatesAutoresizingMaskIntoConstraints = false
+        self.arViewContainer.addSubview(self.arView)
+        self.arView.leftAnchor.constraint(equalTo: self.arViewContainer.leftAnchor, constant: 0).isActive = true
+        self.arView.rightAnchor.constraint(equalTo: self.arViewContainer.rightAnchor, constant: 0).isActive = true
+        self.arView.topAnchor.constraint(equalTo: self.arViewContainer.topAnchor, constant: 0).isActive = true
+        self.arView.bottomAnchor.constraint(equalTo: self.arViewContainer.bottomAnchor, constant: 0).isActive = true
+       
+        self.arViewContainer.isHidden = true
+       
+        self.cameraController = CameraController()
+        self.cameraController.deepAR = self.deepAr
+        self.cameraController.startCamera()
     }
     
     private func setupHangUpButton() {
@@ -152,13 +179,13 @@ class ViewController: UIViewController {
     }
     
     private func switchMode(_ path: String?) {
-        arView.switchEffect(withSlot: currentMode.rawValue, path: path)
+        deepAr.switchEffect(withSlot: currentMode.rawValue, path: path)
     }
     
     @objc
     private func didTapSwitchCameraButton() {
-        let position: AVCaptureDevice.Position = arView.getCameraPosition() == .back ? .front : .back
-        arView.switchCamera(position)
+        let position: AVCaptureDevice.Position = cameraController.position == .back ? .front : .back
+        cameraController.position = position
     }
     
     @objc
@@ -167,6 +194,7 @@ class ViewController: UIViewController {
         if sender.isSelected {
             leaveChannel()
         } else {
+            setupARCamera()
             initializeAgoraEngine()
             joinChannel()
         }
@@ -228,7 +256,7 @@ class ViewController: UIViewController {
 
 // MARK: - ARViewDelegate -
 
-extension ViewController: ARViewDelegate {
+extension ViewController: DeepARDelegate {
     func didFinishPreparingForVideoRecording() {}
     
     func didStartVideoRecording() {}
@@ -244,8 +272,10 @@ extension ViewController: ARViewDelegate {
 
         let videoFrame = AgoraVideoFrame()
         videoFrame.format = 12
-        videoFrame.textureBuf = pixelBuffer
         videoFrame.time = time
+        videoFrame.textureBuf = pixelBuffer
+        videoFrame.rotation = 0
+        
         agoraKit?.pushExternalVideoFrame(videoFrame)
     }
     

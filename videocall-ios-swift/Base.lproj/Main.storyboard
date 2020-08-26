@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UAR-vM-Jtp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UAR-vM-Jtp">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,20 +10,23 @@
         <!--View Controller-->
         <scene sceneID="8dn-W9-aiJ">
             <objects>
-                <viewController id="UAR-vM-Jtp" customClass="ViewController" customModule="quickstart_ios_swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UAR-vM-Jtp" customClass="ViewController" customModule="videocall_ios_swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0hB-2w-z5g">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dh5-h7-Xbn" customClass="ARView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="80" width="414" height="736"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dh5-h7-Xbn" secondAttribute="height" multiplier="720:1280" id="Z5d-70-taA"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qrz-g4-8Lf" customClass="ARView">
-                                <rect key="frame" x="274" y="60" width="124" height="165.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qrz-g4-8Lf">
+                                <rect key="frame" x="274" y="60" width="124" height="221"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Qrz-g4-8Lf" secondAttribute="height" multiplier="3:4" id="yWz-rf-v12"/>
+                                    <constraint firstAttribute="width" secondItem="Qrz-g4-8Lf" secondAttribute="height" multiplier="720:1280" id="yWz-rf-v12"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cEE-6C-IJK">
@@ -95,6 +98,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="dh5-h7-Xbn" firstAttribute="centerY" secondItem="0hB-2w-z5g" secondAttribute="centerY" id="C3P-lJ-qji"/>
                             <constraint firstItem="320-II-mGG" firstAttribute="trailing" secondItem="cEE-6C-IJK" secondAttribute="trailing" id="D31-oC-ZAN"/>
                             <constraint firstItem="Qrz-g4-8Lf" firstAttribute="top" secondItem="aTW-cU-GMP" secondAttribute="top" id="EyB-CF-QDy"/>
                             <constraint firstItem="320-II-mGG" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iOe-D2-CRn" secondAttribute="trailing" constant="16" id="KpW-Kk-JAR"/>
@@ -103,11 +107,9 @@
                             <constraint firstItem="iOe-D2-CRn" firstAttribute="centerX" secondItem="0hB-2w-z5g" secondAttribute="centerX" id="Sud-Xc-0Jz"/>
                             <constraint firstItem="320-II-mGG" firstAttribute="bottom" secondItem="iOe-D2-CRn" secondAttribute="bottom" constant="16" id="aIJ-of-Ra6"/>
                             <constraint firstItem="aTW-cU-GMP" firstAttribute="leading" secondItem="320-II-mGG" secondAttribute="leading" constant="24" id="bjR-Fb-Lbz"/>
-                            <constraint firstItem="dh5-h7-Xbn" firstAttribute="top" secondItem="0hB-2w-z5g" secondAttribute="top" id="ctd-dp-Qvd"/>
                             <constraint firstItem="iOe-D2-CRn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="320-II-mGG" secondAttribute="leading" constant="16" id="dgp-L7-ZgX"/>
                             <constraint firstItem="aTW-cU-GMP" firstAttribute="top" secondItem="320-II-mGG" secondAttribute="top" constant="16" id="ezl-tz-kbn"/>
                             <constraint firstItem="320-II-mGG" firstAttribute="trailing" secondItem="dh5-h7-Xbn" secondAttribute="trailing" id="go6-pA-aoc"/>
-                            <constraint firstAttribute="bottom" secondItem="dh5-h7-Xbn" secondAttribute="bottom" id="hTG-fH-vjA"/>
                             <constraint firstItem="Qrz-g4-8Lf" firstAttribute="width" secondItem="0hB-2w-z5g" secondAttribute="width" multiplier="0.3" id="k8v-so-LRl"/>
                             <constraint firstItem="cEE-6C-IJK" firstAttribute="leading" secondItem="320-II-mGG" secondAttribute="leading" id="mSp-2K-rp4"/>
                             <constraint firstItem="iOe-D2-CRn" firstAttribute="top" secondItem="cEE-6C-IJK" secondAttribute="bottom" constant="8" id="vYb-bc-3nR"/>
@@ -115,7 +117,7 @@
                         <viewLayoutGuide key="safeArea" id="320-II-mGG"/>
                     </view>
                     <connections>
-                        <outlet property="arView" destination="Qrz-g4-8Lf" id="CEB-YC-thV"/>
+                        <outlet property="arViewContainer" destination="Qrz-g4-8Lf" id="Wte-Sh-1U0"/>
                         <outlet property="effectsButton" destination="3Gq-SK-vY3" id="Lxh-KJ-eNs"/>
                         <outlet property="filtersButton" destination="k9G-du-ajy" id="z8g-7p-Nh9"/>
                         <outlet property="hangUpButton" destination="3JQ-7F-h45" id="OXK-t5-YdE"/>
