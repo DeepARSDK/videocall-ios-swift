@@ -133,8 +133,8 @@ class ViewController: UIViewController {
     }
     
     private func setupDeepAR() {
-        self.deepAr = DeepAR()
-        self.deepAr.setLicenseKey("0bacf73d9164614ac9c244817479dffb54a0c708b389a0d787e6287ab931945a56974a6a337929aa")
+        self.deepAr = DeepAR()q
+        self.deepAr.setLicenseKey("your_license_key_here")
         self.deepAr.delegate = self
     }
     

@@ -45,8 +45,8 @@
 		9A2ADF4E24F69B0E00315A03 /* DeepAR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2ADF4A24F69AFE00315A03 /* DeepAR.framework */; };
 		9A2ADF4F24F69B0E00315A03 /* DeepAR.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A2ADF4A24F69AFE00315A03 /* DeepAR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9A2ADF5224F6A8FF00315A03 /* AgoraID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2ADF5124F6A8FF00315A03 /* AgoraID.swift */; };
-		9A2ADF5324F6AA0D00315A03 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2ADF4C24F69B0500315A03 /* AgoraRtcKit.framework */; };
-		9A2ADF5424F6AA0D00315A03 /* AgoraRtcKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A2ADF4C24F69B0500315A03 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9A4970F524FD09FD00DD9C86 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4970F324FD09A400DD9C86 /* AgoraRtcKit.framework */; };
+		9A4970F624FD09FD00DD9C86 /* AgoraRtcKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A4970F324FD09A400DD9C86 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A129D26C23ABE14B0037D5DC /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A129D26B23ABE14B0037D5DC /* Accelerate.framework */; };
 		A129D26D23ABE1550037D5DC /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A129D26A23ABE1440037D5DC /* libc++.tbd */; };
 		A129D26F23ABE15B0037D5DC /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A129D26E23ABE15B0037D5DC /* CoreML.framework */; };
@@ -63,7 +63,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9A2ADF5424F6AA0D00315A03 /* AgoraRtcKit.framework in CopyFiles */,
+				9A4970F624FD09FD00DD9C86 /* AgoraRtcKit.framework in CopyFiles */,
 				9A2ADF4F24F69B0E00315A03 /* DeepAR.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,8 +109,8 @@
 		1919EBBA23ABC02D00D43518 /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		1919EBBC23ABC04F00D43518 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		9A2ADF4A24F69AFE00315A03 /* DeepAR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DeepAR.framework; sourceTree = "<group>"; };
-		9A2ADF4C24F69B0500315A03 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcKit.framework; sourceTree = "<group>"; };
 		9A2ADF5124F6A8FF00315A03 /* AgoraID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgoraID.swift; sourceTree = "<group>"; };
+		9A4970F324FD09A400DD9C86 /* AgoraRtcKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcKit.framework; sourceTree = "<group>"; };
 		A129D26A23ABE1440037D5DC /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		A129D26B23ABE14B0037D5DC /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		A129D26E23ABE15B0037D5DC /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
@@ -126,7 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A2ADF5324F6AA0D00315A03 /* AgoraRtcKit.framework in Frameworks */,
+				9A4970F524FD09FD00DD9C86 /* AgoraRtcKit.framework in Frameworks */,
 				A129D26C23ABE14B0037D5DC /* Accelerate.framework in Frameworks */,
 				9A2ADF4E24F69B0E00315A03 /* DeepAR.framework in Frameworks */,
 				A129D27223ABE1650037D5DC /* VideoToolbox.framework in Frameworks */,
@@ -179,7 +179,7 @@
 		1919EB7C23ABBD5000D43518 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9A2ADF4C24F69B0500315A03 /* AgoraRtcKit.framework */,
+				9A4970F324FD09A400DD9C86 /* AgoraRtcKit.framework */,
 				9A2ADF4A24F69AFE00315A03 /* DeepAR.framework */,
 			);
 			path = Frameworks;
