@@ -292,19 +292,18 @@ extension ViewController: DeepARDelegate {
 }
 
 extension ViewController: AgoraRtcEngineDelegate {
-    // first remote video frame
-    func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoDecodedOfUid uid:UInt, size:CGSize, elapsed:Int) {
-        remoteView.isHidden = false
-        
-        // Only one remote video view is available for this
-        // tutorial. Here we check if there exists a surface
-        // view tagged as this uid.
-        
+    func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int) {
         let videoCanvas = AgoraRtcVideoCanvas()
         videoCanvas.uid = uid
-        videoCanvas.view = remoteView
         videoCanvas.renderMode = .hidden
-        agoraKit.setupRemoteVideo(videoCanvas)
+        videoCanvas.view = remoteView
+        // Sets the remote video view
+        agoraKit?.setupRemoteVideo(videoCanvas)
+    }
+    
+    
+    // first remote video frame
+    func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoDecodedOfUid uid:UInt, size:CGSize, elapsed:Int) {
     }
     
     func rtcEngine(_ engine: AgoraRtcEngineKit, didOfflineOfUid uid:UInt, reason:AgoraUserOfflineReason) {
